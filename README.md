@@ -1,36 +1,81 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Lead Rise Landing Page
 
-## Getting Started
+**Live Demo:** https://www.leadrise.co.uk  
+**Repository:** https://github.com/jamie-ludlow/leadrise-landing
 
-First, run the development server:
+Lead Rise landing page - a premium dark-themed SaaS landing page for estate agent lead response automation.
+
+## 🎨 Design
+
+- **Quality bar:** Apple-level precision, inspired by Vercel/Linear/Stripe aesthetics
+- **Theme:** Dark with brand teal (#2ABFAB)
+- **Typography:** Inter (body) + JetBrains Mono (stats)
+- **Mobile-first:** Fully responsive across all devices
+
+## 🚀 Tech Stack
+
+- **Framework:** Next.js 16 (App Router)
+- **Styling:** Tailwind CSS v4
+- **Animations:** Framer Motion
+- **Icons:** Lucide React
+- **Deployment:** Ready for Vercel
+
+## 📐 Sections
+
+1. **Navigation** - Fixed header with smooth scroll links
+2. **Hero** - Headline with 5 minute/5 second contrast + CTAs
+3. **Problem** - 78% stat + 3 pain point cards
+4. **Solution** - 3 pillars of instant lead response
+5. **How It Works** - 3-step process
+6. **Social Proof** - 21x stat + industry badges
+7. **Pricing** - 3 tiers (Starter/Growth/Scale)
+8. **Footer CTA** - Final conversion push
+9. **Footer** - Links & copyright
+
+## 🏗️ Development
 
 ```bash
+# Install dependencies
+npm install
+
+# Run dev server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+
+# Build for production
+npm run build
+
+# Start production server
+npm start
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) to view in browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## ✨ Features
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- ✅ Pixel-perfect implementation of design spec
+- ✅ Smooth scroll animations
+- ✅ Hover states on all interactive elements
+- ✅ Accessibility focus states (WCAG AA)
+- ✅ Production build optimized
+- ✅ Static generation for maximum speed
+- ✅ Mobile-first responsive design
 
-## Learn More
+## 🎯 Performance
 
-To learn more about Next.js, take a look at the following resources:
+Built for speed:
+- Static page generation
+- Optimized fonts (Google Fonts)
+- Minimal JavaScript
+- CSS-only animations where possible
+- Target: 95+ Lighthouse score
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 📝 Notes
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- No backend required - pure static landing page
+- Ready for Vercel deployment (not deployed yet - awaiting review)
+- All copy from design spec (no placeholder text)
+- Exact colors, spacing, typography per spec
 
-## Deploy on Vercel
+## 📄 License
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+© 2026 Lead Rise. All rights reserved.
