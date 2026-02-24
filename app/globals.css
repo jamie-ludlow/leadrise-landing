@@ -1,26 +1,101 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
+@layer theme {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    /* Primary Colors */
+    --color-primary-teal: #2abfab;
+    --color-primary-teal-hover: #1db9a3;
+    --color-primary-teal-glow: #2abfab40;
+    
+    /* Background Colors */
+    --color-bg-page: #0a0a0f;
+    --color-bg-card: #111116;
+    --color-bg-elevated: #18181d;
+    
+    /* Border Colors */
+    --color-border-default: #27272c;
+    --color-border-hover: #2abfab30;
+    
+    /* Text Colors */
+    --color-text-heading: #fafafa;
+    --color-text-body: #e4e4e7;
+    --color-text-muted: #a1a1aa;
+    --color-text-subtle: #71717a;
+    
+    /* Accent Colors */
+    --color-accent-success: #10b981;
+    --color-accent-success-glow: #10b98140;
+    --color-accent-warning: #f59e0b;
+    --color-accent-error: #ef4444;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    background-color: var(--color-bg-page);
+    color: var(--color-text-body);
+  }
+
+  /* Respect motion preferences */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+@layer components {
+  /* Focus styles for accessibility */
+  .focus-ring {
+    outline: none;
+    &:focus {
+      outline: 2px solid var(--color-primary-teal);
+      outline-offset: 2px;
+    }
+  }
+
+  /* Gradient effects */
+  .hero-gradient {
+    background: radial-gradient(
+      circle at top center,
+      rgba(42, 191, 171, 0.15) 0%,
+      transparent 60%
+    );
+  }
+
+  .card-hover-glow {
+    transition: all 200ms ease;
+    
+    &:hover {
+      border-color: var(--color-border-hover);
+      box-shadow: 0 8px 32px rgba(42, 191, 171, 0.08);
+    }
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+  
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-8px);
+    }
+  }
 }
