@@ -1,185 +1,105 @@
 'use client';
 
-import React from 'react';
-import { Button } from '../ui/Button';
-import { Check } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { useInView } from 'framer-motion';
+import { useRef } from 'react';
+import { Check, TrendingUp } from 'lucide-react';
 
-export const Pricing: React.FC = () => {
-  const tiers = [
-    {
-      name: 'Starter',
-      price: 149,
-      description: 'Perfect for getting started',
-      features: [
-        '100 leads/month',
-        'SMS + AI voice',
-        'Basic qualification',
-        'Calendar integration',
-        'Email support',
-      ],
-      popular: false,
-    },
-    {
-      name: 'Growth',
-      price: 299,
-      description: 'For growing businesses',
-      features: [
-        '500 leads/month',
-        'SMS + AI voice',
-        'Advanced qualification',
-        'CRM integration',
-        'Priority support',
-        'Custom workflows',
-      ],
-      popular: true,
-    },
-    {
-      name: 'Scale',
-      price: 499,
-      description: 'For high-volume teams',
-      features: [
-        'Unlimited leads',
-        'SMS + AI voice',
-        'Custom AI training',
-        'Multi-team support',
-        'Dedicated account manager',
-        'API access',
-      ],
-      popular: false,
-    },
-  ];
+const features = [
+  'Unlimited lead responses',
+  'Phone + SMS, every lead',
+  'AI-powered qualification',
+  'Direct calendar booking',
+  '24/7 coverage, no breaks',
+  'Dedicated support team',
+  'Custom setup for your business',
+];
+
+export function Pricing() {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: '-100px' });
 
   return (
-    <section 
-      id="pricing" 
-      className="py-[120px] md:py-[120px] px-6 border-t"
-      style={{
-        backgroundColor: 'var(--color-bg-card)',
-        borderColor: 'var(--color-border-default)',
-      }}
-    >
-      <div className="max-w-[1280px] mx-auto">
-        {/* Section Header */}
-        <div className="text-center mb-16">
-          <h2 
-            className="text-4xl md:text-5xl font-bold mb-4"
-            style={{ color: 'var(--color-text-heading)' }}
-          >
-            Simple, transparent pricing
+    <section id="pricing" className="relative py-4xl bg-navy-charcoal">
+      <div className="max-w-[960px] mx-auto px-6 md:px-8 lg:px-16">
+        {/* Headline */}
+        <motion.div
+          ref={ref}
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-3xl"
+        >
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-4">
+            One price. Unlimited value.
           </h2>
-          <p 
-            className="text-lg"
-            style={{ color: 'var(--color-text-muted)' }}
-          >
-            Start free, scale as you grow
+          <p className="text-xl text-text-secondary">
+            No hidden fees. No per-lead charges. No surprises.
           </p>
-        </div>
+        </motion.div>
 
-        {/* Pricing Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-[1120px] mx-auto">
-          {tiers.map((tier, index) => (
-            <div
-              key={index}
-              className={`relative flex flex-col rounded-2xl p-10 transition-all duration-200 hover:-translate-y-1 ${
-                tier.popular ? 'border-2 md:scale-105' : 'border'
-              }`}
-              style={{
-                backgroundColor: 'var(--color-bg-elevated)',
-                borderColor: tier.popular ? 'var(--color-primary-teal)' : 'var(--color-border-default)',
-                boxShadow: tier.popular ? '0 20px 60px rgba(42,191,171,0.06)' : 'none',
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.boxShadow = '0 12px 40px rgba(0,0,0,0.2)';
-              }}
-              onMouseLeave={(e) => {
-                if (!tier.popular) {
-                  e.currentTarget.style.boxShadow = 'none';
-                } else {
-                  e.currentTarget.style.boxShadow = '0 20px 60px rgba(42,191,171,0.06)';
-                }
-              }}
-            >
-              {/* Popular Badge */}
-              {tier.popular && (
-                <div 
-                  className="absolute -top-3 left-1/2 -translate-x-1/2 text-xs font-semibold px-4 py-1.5 rounded-xl"
-                  style={{
-                    backgroundColor: 'var(--color-primary-teal)',
-                    color: 'var(--color-bg-page)',
-                  }}
-                >
-                  Most popular
-                </div>
-              )}
-
-              {/* Tier Name */}
-              <div 
-                className="text-sm font-semibold mb-4"
-                style={{ color: 'var(--color-text-muted)' }}
-              >
-                {tier.name}
+        {/* Pricing Card */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="max-w-[600px] mx-auto"
+        >
+          <div className="bg-gradient-to-b from-teal/[0.08] to-transparent border-2 border-teal rounded-3xl p-12 md:p-16 shadow-2xl shadow-teal/15">
+            {/* Price */}
+            <div className="text-center mb-12">
+              <div className="flex items-baseline justify-center">
+                <span className="text-7xl md:text-8xl lg:text-9xl font-bold">£199</span>
+                <span className="text-2xl md:text-3xl text-text-secondary ml-3">/month</span>
               </div>
-
-              {/* Price */}
-              <div className="mb-2">
-                <span 
-                  className="font-mono text-3xl font-bold align-super"
-                  style={{ color: 'var(--color-text-heading)' }}
-                >
-                  £
-                </span>
-                <span 
-                  className="font-mono text-5xl font-bold"
-                  style={{ color: 'var(--color-text-heading)' }}
-                >
-                  {tier.price}
-                </span>
-                <span 
-                  className="text-base font-normal"
-                  style={{ color: 'var(--color-text-subtle)' }}
-                >
-                  /mo
-                </span>
-              </div>
-
-              {/* Description */}
-              <p 
-                className="text-sm mb-8"
-                style={{ color: 'var(--color-text-muted)' }}
-              >
-                {tier.description}
-              </p>
-
-              {/* Features List */}
-              <ul className="flex flex-col gap-3 mb-8 flex-1">
-                {tier.features.map((feature, featureIndex) => (
-                  <li key={featureIndex} className="flex items-start gap-3">
-                    <Check
-                      size={16}
-                      className="flex-shrink-0 mt-0.5"
-                      style={{ color: 'var(--color-primary-teal)' }}
-                    />
-                    <span 
-                      className="text-sm leading-relaxed"
-                      style={{ color: 'var(--color-text-body)' }}
-                    >
-                      {feature}
-                    </span>
-                  </li>
-                ))}
-              </ul>
-
-              {/* CTA Button */}
-              <Button
-                variant={tier.popular ? 'primary' : 'secondary'}
-                className="w-full"
-              >
-                Get started
-              </Button>
             </div>
-          ))}
-        </div>
+
+            {/* What's Included */}
+            <div className="space-y-4 mb-12">
+              {features.map((feature, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={isInView ? { opacity: 1, x: 0 } : {}}
+                  transition={{ duration: 0.4, delay: 0.3 + index * 0.05 }}
+                  className="flex items-center space-x-3"
+                >
+                  <Check className="w-6 h-6 text-teal flex-shrink-0" />
+                  <span className="text-lg">{feature}</span>
+                </motion.div>
+              ))}
+            </div>
+
+            {/* ROI Comparison */}
+            <div className="bg-white/[0.05] rounded-xl p-6 mb-12">
+              <div className="text-center">
+                <div className="flex items-center justify-center space-x-2 mb-2">
+                  <TrendingUp className="w-5 h-5 text-success" />
+                  <span className="text-xl font-semibold text-success">
+                    £199/month → Average £4,800 additional revenue
+                  </span>
+                </div>
+                <p className="text-sm text-text-secondary">
+                  That&apos;s a 24x return. Every single month.
+                </p>
+              </div>
+            </div>
+
+            {/* CTA */}
+            <a
+              href="#demo"
+              className="block w-full px-8 py-5 bg-gradient-to-r from-teal to-teal-hover text-white text-lg font-semibold uppercase tracking-wider rounded-xl shadow-lg shadow-teal-glow hover:shadow-xl hover:shadow-teal-glow hover:-translate-y-1 transition-all duration-200 text-center"
+            >
+              Start Converting More Leads
+            </a>
+          </div>
+
+          {/* Guarantee */}
+          <p className="text-sm text-text-muted text-center mt-8">
+            Cancel anytime. No contracts. No commitments.
+          </p>
+        </motion.div>
       </div>
     </section>
   );
-};
+}

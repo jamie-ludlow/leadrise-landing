@@ -1,61 +1,81 @@
 'use client';
 
-import React from 'react';
-import { Card } from '../ui/Card';
+import { motion } from 'framer-motion';
+import { useInView } from 'framer-motion';
+import { useRef } from 'react';
 
-export const ProblemSection: React.FC = () => {
-  const painPoints = [
-    { stat: '47hr', description: 'Average response time' },
-    { stat: '80%', description: 'Conversion drop after 5 minutes' },
-    { stat: 'Lost', description: 'Competitors winning on speed' },
-  ];
+const stats = [
+  {
+    number: '78%',
+    label: 'of customers buy from the first business that responds',
+    context: 'Speed is everything. Respond fast or lose.',
+    color: 'text-warning',
+  },
+  {
+    number: '57%',
+    label: 'of businesses take over a week to respond',
+    context: 'By then, your lead is long gone.',
+    color: 'text-warning',
+  },
+  {
+    number: '51%',
+    label: 'of leads are never contacted at all',
+    context: "That's money left on the table.",
+    color: 'text-error',
+  },
+];
+
+export function ProblemSection() {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: '-100px' });
 
   return (
-    <section 
-      className="py-[120px] md:py-[120px] px-6 border-t"
-      style={{
-        backgroundColor: 'var(--color-bg-card)',
-        borderColor: 'var(--color-border-default)',
-      }}
-    >
-      <div className="max-w-[1280px] mx-auto">
-        {/* Leading Stat */}
-        <h2 
-          className="text-3xl md:text-[40px] font-bold leading-tight text-center mb-16"
-          style={{ color: 'var(--color-text-heading)' }}
+    <section className="relative py-4xl bg-navy-charcoal">
+      <div className="max-w-[960px] mx-auto px-6 md:px-8 lg:px-16">
+        {/* Headline */}
+        <motion.h2
+          ref={ref}
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6 }}
+          className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-center mb-2xl max-w-[800px] mx-auto"
         >
-          <span 
-            className="font-mono"
-            style={{ color: 'var(--color-primary-teal)' }}
-          >
-            78%
-          </span>{' '}
-          of customers buy from whoever responds first.
-        </h2>
+          Every minute you wait, your competitors are closing deals.
+        </motion.h2>
 
-        {/* Pain Point Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {painPoints.map((point, index) => (
-            <Card
+        {/* Stat Cards */}
+        <div className="grid md:grid-cols-3 gap-8 mb-2xl">
+          {stats.map((stat, index) => (
+            <motion.div
               key={index}
-              className="text-center transition-transform duration-200 hover:-translate-y-0.5"
+              initial={{ opacity: 0, y: 30 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.6, delay: index * 0.1 }}
+              className="bg-gradient-to-b from-teal/5 to-transparent border border-teal/15 rounded-xl p-6 md:p-8"
             >
-              <div 
-                className="font-mono text-4xl md:text-5xl font-bold leading-tight mb-4"
-                style={{ color: 'var(--color-primary-teal)' }}
-              >
-                {point.stat}
+              <div className={`text-6xl md:text-7xl lg:text-8xl font-bold ${stat.color} mb-4`}>
+                {stat.number}
               </div>
-              <p 
-                className="text-base leading-relaxed"
-                style={{ color: 'var(--color-text-body)' }}
-              >
-                {point.description}
+              <p className="text-base text-text-secondary mb-3 leading-relaxed">
+                {stat.label}
               </p>
-            </Card>
+              <p className="text-sm text-text-muted">
+                {stat.context}
+              </p>
+            </motion.div>
           ))}
         </div>
+
+        {/* Bottom Text */}
+        <motion.p
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, delay: 0.4 }}
+          className="text-xl text-text-secondary text-center max-w-[700px] mx-auto leading-relaxed"
+        >
+          You&apos;re not slow. You&apos;re busy. But your leads don&apos;t care—they&apos;re calling someone else.
+        </motion.p>
       </div>
     </section>
   );
-};
+}

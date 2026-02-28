@@ -2,10 +2,12 @@ import { Navbar } from '@/components/Navbar';
 import { Hero } from '@/components/sections/Hero';
 import { ProblemSection } from '@/components/sections/ProblemSection';
 import { SolutionSection } from '@/components/sections/SolutionSection';
-import { HowItWorks } from '@/components/sections/HowItWorks';
+import { ROICalculator } from '@/components/sections/ROICalculator';
 import { SocialProof } from '@/components/sections/SocialProof';
+import { HowItsDifferent } from '@/components/sections/HowItsDifferent';
+import { LiveDemoCTA } from '@/components/sections/LiveDemoCTA';
 import { Pricing } from '@/components/sections/Pricing';
-import { FooterCTA } from '@/components/sections/FooterCTA';
+import { FAQ } from '@/components/sections/FAQ';
 import { Footer } from '@/components/sections/Footer';
 
 export default function Home() {
@@ -15,10 +17,12 @@ export default function Home() {
       <Hero />
       <ProblemSection />
       <SolutionSection />
-      <HowItWorks />
+      <ROICalculator />
       <SocialProof />
+      <HowItsDifferent />
+      <LiveDemoCTA />
       <Pricing />
-      <FooterCTA />
+      <FAQ />
       <Footer />
     </main>
   );
